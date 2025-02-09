@@ -1,5 +1,10 @@
+import {dummyTickets, TicketList} from "@/app/tickets/TicketList";
+
 export default function TicketListPage() {
     return (
-        <div>Ticket List should go here....</div>
+        <>
+            <h2>Ticket List</h2>
+            <TicketList tickets={dummyTickets}/>
+        </>
     )
 }
