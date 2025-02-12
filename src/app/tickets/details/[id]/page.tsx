@@ -1,7 +1,19 @@
+import classes from './TicketDetails.module.css'
+import {TicketComments} from "@/app/tickets/details/[id]/TicketComments";
 export default function TicketDetailsPage({params}) {
     return (
-        <div>
-            Ticket details page with <strong>ID={params.id}</strong>
-        </div>
+        <article className={classes.ticketDetails}>
+            <header>
+                <strong>#{params.id}</strong> - <strong className={classes.ticketStatusGreen}>Open</strong>
+                <br/>
+                <small className={classes.ticketDetails}>
+                    Created by <strong>AuthorName</strong> at {" "}
+                    <time>December 10th 2025</time>
+                </small>
+                <h2>Ticket title should be here</h2>
+            </header>
+            <section>Some details about the ticket should be here.</section>
+            <TicketComments/>
+        </article>
     )
 }
