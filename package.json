@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "reset": "npx supabase stop; docker volume rm $(docker volume ls --format '{{.Name}}' --filter label=com.supabase.cli.project=ticket_system); npx supabase start",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
