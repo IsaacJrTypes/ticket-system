@@ -26,9 +26,7 @@ export default function UserList() {
         <tbody>
         {users.map((user,key) => (
             <tr key={key + user.name}>
-                <td style={{ color: !user.isAvailable ? "red" : undefined }}>
-                    {user.isAvailable ? <IconCheck /> : <IconUserOff />}{user.name}
-                </td>
+                <td style={{ color: !user.isAvailable ? "red" : undefined }}>{user.isAvailable ? <IconCheck /> : <IconUserOff />}{user.name}</td>
                 <td>{user.job}</td>
             </tr>
         ))}
