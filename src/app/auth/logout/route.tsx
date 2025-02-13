@@ -1,4 +1,4 @@
-import { getSupabaseCookiesUtilClient } from "@/supabase-utils/cookieUtilClient";
+import { getSupabaseCookiesUtilClient } from "@/supabase-utils/cookiesUtilClient";
 import { NextResponse } from "next/server";
 export async function GET(request) {
     const supabase = getSupabaseCookiesUtilClient()

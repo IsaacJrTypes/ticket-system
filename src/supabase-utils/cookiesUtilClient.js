@@ -8,7 +8,7 @@ export const getSupabaseCookiesUtilClient = () => {
         {
             cookies: {
                 getAll() {
-                    return cookieStore.getall()
+                    return cookieStore.getAll()
                 },
                 setAll(cookiesToSet) {
                     try{

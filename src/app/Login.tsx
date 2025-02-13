@@ -11,8 +11,8 @@ import {useRouter} from "next/navigation";
     const router = useRouter()
 
     return (
-        <form
-            onSubmit={(event) => {
+        <form action="/auth/pw-login" method="POST"
+              onSubmit={(event) => {
                 event.preventDefault();
                 if (isPasswordLogin) {
                     supabase.auth.signInWithPassword({
