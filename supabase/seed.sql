@@ -154,20 +154,20 @@ INSERT INTO "public"."service_user" ("id", "created_at", "full_name", "supabase_
 
 
 --
--- Data for Name: tenets; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: tenants; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "public"."tenets" ("id", "created_at", "name", "domain") VALUES
+INSERT INTO "public"."tenants" ("id", "created_at", "name", "domain") VALUES
 	('packt', '2025-02-14 04:54:05.016363+00', 'Packt Publishing', 'packt.local'),
 	('activenode', '2025-02-14 04:55:58.571003+00', 'activenode Education', 'activenode.learn'),
 	('oddmonkey', '2025-02-14 04:56:49.30759+00', 'Odd Monkey Inc', 'oddmonkey.inc');
 
 
 --
--- Data for Name: tenet_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: tenant_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "public"."tenet_permissions" ("id", "created_at", "service_user", "tenet") VALUES
+INSERT INTO "public"."tenant_permissions" ("id", "created_at", "service_user", "tenant") VALUES
 	(1, '2025-02-14 05:55:25.212819+00', 2, 'packt'),
 	(2, '2025-02-14 05:55:42.099029+00', 2, 'oddmonkey');
 
@@ -230,10 +230,10 @@ SELECT pg_catalog.setval('"public"."service_user_id_seq"', 2, true);
 
 
 --
--- Name: tenet_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: tenant_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"public"."tenet_permissions_id_seq"', 2, true);
+SELECT pg_catalog.setval('"public"."tenant_permissions_id_seq"', 2, true);
 
 
 --
