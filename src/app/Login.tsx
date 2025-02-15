@@ -7,13 +7,19 @@ import { useRouter } from "next/navigation";
 export const Login = ({isPasswordLogin}) => {
     const emailInputRef = useRef(null)
     const passwordInputRef = useRef(null)
-    const supabase = getSupabaseBrowserClient ()
+    const supabase = getSupabaseBrowserClient()
     const router = useRouter()
+    console.log(emailInputRef)
     return (
         <form
-            onSubmit={(event) => {
-                event.preventDefault();
+            method="POST"
+            action={isPasswordLogin ? "/auth/pw-login" : "/auth/magic-link"}
+            onSubmit={ (event) => {
+                console.log("Form submitted"); // Add this to verify submission
+                console.log("Form action:", event.currentTarget.action)
+
                 if (isPasswordLogin) {
+                    event.preventDefault();
                   supabase.auth.signInWithPassword(
                       {
                           email: emailInputRef.current.value,
@@ -22,6 +28,7 @@ export const Login = ({isPasswordLogin}) => {
                   ).then((result) => {
                       if (result.data?.user) {
                           alert("signed in!!")
+                          router.push("/tickets");
                       } else {
                           alert("Could not log in")
                       }
