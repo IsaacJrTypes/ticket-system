@@ -12,12 +12,12 @@ export default function Nav() {
     const supabase = getSupabaseBrowserClient()
     const router = useRouter()
     useEffect(() => {
-        const {
-            data: { subscription },
-        } = supabase.auth.onAuthStateChange((event, session) => {
-            console.log("onAuthStateChange", event);
+        const { data: { subscription }} = supabase.auth.onAuthStateChange((event, session) => {
+            console.log("(NAV) onAuthStateChange: ", event);
             if (event === "SIGNED_OUT") {
                 router.push("/");
+            } else if (event === "SIGN_IN") {
+                router.push("/tickets");
             }
         });
 

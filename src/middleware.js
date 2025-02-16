@@ -8,7 +8,7 @@ export async function middleware(req) {
     const requestedPath = req.nextUrl.pathname;
     const sessionUser = session.data?.session?.user;
 
-    console.log("requestedPath", requestedPath);
+    console.log("requestedPath: ", requestedPath);
 
     if (requestedPath.startsWith("/tickets")) {
         if (!sessionUser) {

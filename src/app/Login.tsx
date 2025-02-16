@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import {getSupabaseBrowserClient} from "@/supabase-utils/browserClient";
 import { useRouter } from "next/navigation";
 
@@ -10,6 +10,40 @@ export const Login = ({isPasswordLogin}) => {
     const supabase = getSupabaseBrowserClient()
     const router = useRouter()
     console.log(emailInputRef)
+
+    const handleMagicLinkAuth = useCallback(async () => {
+        if (typeof window !== 'undefined' && window.location.hash) {
+            const hashParams = new URLSearchParams(window.location.hash.substring(1));
+            const accessToken = hashParams.get('access_token')
+            const refreshToken = hashParams.get('refresh_token')
+
+            if (accessToken && refreshToken) {
+                const { error } = await supabase.auth.setSession({
+                    access_token: accessToken,
+                    refresh_token: refreshToken
+                });
+                if (!error) {
+                    window.location.hash = ''
+                }
+            }
+        }
+    }, [supabase.auth])
+
+    useEffect(() => {
+        handleMagicLinkAuth();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log("(Login) Auth state changed:", event, session)
+            if (event === "SIGNED_IN" && session?.user) {
+                router.push("/tickets")
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, [handleMagicLinkAuth, supabase.auth, router]);
+
+
+
     return (
         <form
             method="POST"
