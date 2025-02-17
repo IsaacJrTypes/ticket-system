@@ -7,7 +7,8 @@
     "reset": "npx supabase stop; docker volume rm $(docker volume ls --format '{{.Name}}' --filter label=com.supabase.cli.project=ticket_system); npx supabase start",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:backup": "rm ./supabase/*.sql &&  npx supabase db dump --local --data-only --file=supabase/seed.sql && npx supabase db diff --local -f my_ initial_ structure"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.2",
