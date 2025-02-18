@@ -1,4 +1,5 @@
-import { getSupabaseReqResClient } from "@/supabase-utils/reqRes"
+import {getSupabaseReqResClient} from "./supabase-utils/reqResClient";
+
 export async function middleware(request) {
     const { supabase, response } = getSupabaseReqResClient({ request });
     await supabase.auth.getSession();
